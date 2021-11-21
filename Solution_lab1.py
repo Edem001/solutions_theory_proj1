@@ -4,6 +4,7 @@ import numpy as np
 matrix = np.loadtxt("sol_lab1_input.txt", dtype='i', delimiter=',')
 
 minvals = [min(matrix[i]) for i in range(0, matrix.shape[1])]
+maxvals = [max(matrix[i]) for i in range(0, matrix.shape[1])]
 vald = max(minvals)
 
 row_avg = [sum(matrix[i] / matrix.shape[0] for i in range(0, matrix.shape[1]))]
@@ -13,7 +14,7 @@ laplas = max(row_avg)
 coef_opt = 0.7
 hurviz = [0, 0, 0]
 for i in range(0, matrix.shape[0]):
-    hurviz[i] = coef_opt * minvals[i] + (1 - coef_opt) * row_sum[i]
+    hurviz[i] = coef_opt * minvals[i] + (1 - coef_opt) * maxvals[i]
 
 p = [0.55, 0.3, 0.15]
 R = [row_sum[i] * p[i] for i in range(0, matrix.shape[0])]
